@@ -22,6 +22,9 @@ app.set("views", "./views");
 
 /* 라우터 세팅 */
 app.use("/", express.static("./public"));
+app.use("/", (req, res, next) => {
+	res.render("index.pug", {file: "index"});
+});
 app.use("/member", memberRouter);
 app.use("/mypage", mypageRouter);
 app.use("/board", boardRouter);
