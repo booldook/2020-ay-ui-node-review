@@ -1,7 +1,6 @@
 /* 선언 */
 const express = require('express');
 const app = express();
-const util = require('./modules/util');
 
 /* 서버 구현 */
 app.listen(3000, () => {
@@ -17,12 +16,15 @@ app.set("views", "./views");
 
 
 /* 라우터 세팅 */
-app.use("/", express.static("./public"));
-app.get("/alert", (req, res, next) => {
-	res.send(util.alert("경고입니다.!!!!!!!!"));
+app.use((req, res, next) => {
+	req.a = 0;
+	for(var i=0; i<1000; i++) req.a++;
+	next();
 });
-
-
+app.use("/", express.static("./public"));
+app.use("/", (req, res, next) => {
+	res.send('<h1>'+req.a+'</h1>');
+});
 
 /* 에러 세팅 */
 app.use((req, res, next) => {
