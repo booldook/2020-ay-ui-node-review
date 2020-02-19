@@ -1,7 +1,8 @@
 /* 선언 */
 const express = require('express');
 const app = express();
-const util = require('./modules/util');
+const {	alert, alertLoc	} = require('./modules/util');
+//const {alert, alertLoc} = { alert, alertLoc }; // 비 구조화 할당
 
 /* 서버 구현 */
 app.listen(3000, () => {
@@ -19,7 +20,7 @@ app.set("views", "./views");
 /* 라우터 세팅 */
 app.use("/", express.static("./public"));
 app.get("/alert", (req, res, next) => {
-	res.send(util.alert("경고입니다.!!!!!!!!"));
+	res.send(alert("경고입니다.!!!!!!!!"));
 });
 
 
