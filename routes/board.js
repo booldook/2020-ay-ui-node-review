@@ -5,8 +5,8 @@ router.get("/list", (req, res, next) => {
 	res.render("board/list.pug", {file: "board"});
 });
 
-router.get("/view", (req, res, next) => {
-	res.render("board/view.pug", {file: "board"});
+router.get("/write", (req, res, next) => {
+	res.render("board/write.pug", {file: "board"});
 });
 
 
