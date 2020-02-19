@@ -4,6 +4,8 @@ const app = express();
 
 /* 라우터 불러오기 */
 const memberRouter = require('./routes/member');
+const mypageRouter = require('./routes/mypage');
+const boardRouter = require('./routes/board');
 
 /* 서버 구현 */
 app.listen(3000, () => {
@@ -21,6 +23,8 @@ app.set("views", "./views");
 /* 라우터 세팅 */
 app.use("/", express.static("./public"));
 app.use("/member", memberRouter);
+app.use("/mypage", mypageRouter);
+app.use("/board", boardRouter);
 
 
 
@@ -29,5 +33,3 @@ app.use("/member", memberRouter);
 app.use((req, res, next) => {
 	res.send('<h1>Error: 404 - Not Found</h1>');
 });
-
-
