@@ -6,7 +6,8 @@ router.get("/list", (req, res, next) => {
 });
 
 router.get("/view", (req, res, next) => {
-	res.send('<h1>/board/view</h1>');
+	res.render("board/view.pug", {file: "board"});
 });
+
 
 module.exports = router;

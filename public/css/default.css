@@ -1,0 +1,15 @@
+.header {background-color: #444; color: #f8f8f8;}
+.header a:link,
+.header a:visited,
+.header a:active,
+.header a:hover {color: inherit;}
+
+.top-wrap {display: flex; padding: 0 1rem; justify-content: space-between; align-items: center;}
+.logo {padding: 0.75rem;}
+.navi-wrap {display: flex;}
+.navi-wrap > .navi {position: relative; margin: 0 1rem;}
+.navi-wrap > .navi > div {padding: 0.75rem; cursor: pointer;}
+.subs {position: absolute; background-color: #444; display: none;}
+.subs > .sub {padding: 0.75rem; width: 100px;}
+
+.main-wrap {padding: 1rem;}
