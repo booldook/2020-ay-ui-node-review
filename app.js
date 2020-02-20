@@ -17,6 +17,9 @@ const { connect } = require('./modules/mysql');
 const galleryRouter = require('./routes/gallery');
 
 /* 미들웨어 세팅 */
+// 아래의 두줄은 req.body에 접근하게 해준다.
+app.use(express.json());
+app.use(express.urlencoded({extended: false}));
 
 /* 라우터 세팅 */
 app.use("/", express.static("./public"));
