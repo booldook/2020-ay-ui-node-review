@@ -1,0 +1,13 @@
+extends ../layout/default.pug
+block content
+	.container
+		.alert.alert-secondary
+			h4 
+				i.fa.fa-image.mr-2.text-light
+				span 갤러리 게시판
+		ul.wrapper.d-flex.justify-content-between.flex-wrap
+			- var lists = ['/img/p1.jpg','/img/p2.jpg','/img/p3.jpg','/img/p4.jpg','/img/p5.jpg','/img/p6.jpg','/img/p7.jpg','/img/p8.jpg','/img/p9.jpg','/img/p10.jpg','/img/p11.jpg'];
+			each v in lists
+				li.list(style="flex: 20% 0 0; padding: 1%;")
+					div.border
+						img.img(src=`${v}`)
