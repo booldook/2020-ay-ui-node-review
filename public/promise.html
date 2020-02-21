@@ -1,0 +1,59 @@
+<script>
+	// callback
+	const users = [{
+			id: 1,
+			name: "홍길동"
+		},
+		{
+			id: 2,
+			name: "홍길순"
+		},
+		{
+			id: 3,
+			name: "홍길만"
+		},
+	];
+
+	findName(2, function (result) {
+		console.log(result);
+	});
+	console.log("hi~");
+
+	findUser(2).then(function(r){
+		console.log(r);
+	}).catch(function(e){
+		console.log(e);
+	});
+
+	async function init() {
+		var user = await findUser(3);
+		console.log(user);
+	}
+	init();
+
+	function findUser(id, fn) {
+		return new Promise(function(resolve, reject) {
+			let user = users.filter(function(v) {
+				return v.id == id;
+			});
+			if(user.length > 0) resolve(user[0]);
+			else reject('Error');
+		});
+	}
+
+	// 아이디에 맞는 유저를 찾아서... 보내준 함수를 실행한다.
+	function findName(id, fn) {
+		let user = users.filter(function(v){
+			return v.id == id;
+		});
+		fn(user[0]);
+		/*
+		for (var i in users) {
+			if (id == users[i].id) {
+				fn(users[i]);
+				break;
+			}
+		}
+		*/
+	}
+</script>

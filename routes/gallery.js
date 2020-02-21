@@ -1,3 +1,4 @@
+const fs = require('fs');
 const express = require('express');
 const router = express.Router();
 const { connect } = require('../modules/mysql');
@@ -16,13 +17,21 @@ router.get("/write", (req, res, next) => {
 	res.render("gallery/write.pug", value);
 });
 
-router.post("/save", (req, res, next) => {
+router.post("/save", async(req, res, next) => {
 	let { title, writer, content, wdate = new Date() } = req.body;
 	let sql = "INSERT INTO gallery SET title=?, writer=?, content=?, wdate=?";
 	const value = [title, writer, content, wdate];
-	connect.execute(sql, value, (err, result) => {
+	const result = await connect.execute(sql, value);
+	res.json(result);
+
+	/* connect.execute(sql, value, (err, result) => {
 		res.json(result);
-	});
+	}); */
+	/* connect.execute(sql, value).then((result) => {
+		res.json(result);
+	}).catch((error) => {
+		res.json(error);
+	}); */
 });
 
 module.exports = router;
