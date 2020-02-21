@@ -74,25 +74,7 @@ const urlStr = 'https://nodejs.org:3000/dist/latest-v12.x/docs/api/url.html?a=12
 const myURL = new URL(urlStr);
 log(myURL);
 log(	url.parse(urlStr)	);
-clear();
+for(let [k, v] of myURL.searchParams) {
+	log(k, v);
+}
 
-/* 번외편 - ES6 Set(), Map(),  */
-// 배열 ["A", "B", "C"]: key(index), value
-// 객체 {fname: "홍", lname: "길동", age: 25}
-let arr2 = new Array();
-arr2.push("A");
-arr2.push("B");
-arr2.push("C");
-arr2.push("A");
-arr2.push("B");
-
-let set = new Set();
-set.add("A");
-set.add("B");
-set.add("C");
-set.add("A");
-set.add("B");
-
-console.log(arr2, set);
-
-let chk = true, false : arr2 "B"
