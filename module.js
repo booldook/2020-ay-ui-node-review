@@ -44,3 +44,55 @@ log(	"cpus: ", os.cpus()	);
 log(	"cpus().length: ", os.cpus().length	);
 log(	"freemem: ", os.freemem()	);
 log(	"totalmem: ", os.totalmem()	);
+clear();
+
+
+/* path 객체 */
+const path = require('path');
+const file = __filename;
+log("dirname: ", path.dirname(file));		// 폴더경로
+log("extname: ", path.extname(file));		// 파일의 확장자(.포함)
+log("basename: ", path.basename(file));	// 파일명(확장자 포함)
+log("parse: ", path.parse(file));
+/*
+파일의 정보를 객체로 리턴
+{
+	root: 'C:\\', 
+	dir: 'C:\\folder', 
+	base: 'module.js',
+	ext: '.js', 
+	name: 'module'
+}
+*/
+log(path.normalize("C:/\\Windows\\assembly/NativeImages_v2.0.50727_32/CustomMarshalers"));
+log(	path.join(__dirname, './node_modules/mysql2', '../')	);
+clear();
+
+/* url */
+const url = require('url');
+const urlStr = 'https://nodejs.org:3000/dist/latest-v12.x/docs/api/url.html?a=123&b=456#url_name';
+const myURL = new URL(urlStr);
+log(myURL);
+log(	url.parse(urlStr)	);
+clear();
+
+/* 번외편 - ES6 Set(), Map(),  */
+// 배열 ["A", "B", "C"]: key(index), value
+// 객체 {fname: "홍", lname: "길동", age: 25}
+let arr2 = new Array();
+arr2.push("A");
+arr2.push("B");
+arr2.push("C");
+arr2.push("A");
+arr2.push("B");
+
+let set = new Set();
+set.add("A");
+set.add("B");
+set.add("C");
+set.add("A");
+set.add("B");
+
+console.log(arr2, set);
+
+let chk = true, false : arr2 "B"

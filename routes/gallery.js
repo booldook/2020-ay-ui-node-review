@@ -1,7 +1,8 @@
 const fs = require('fs');
+const path = require('path');
 const express = require('express');
 const router = express.Router();
-const { connect } = require('../modules/mysql');
+const { connect } = require(path.join(__dirname, '../modules/mysql'));
 
 router.get(["/", "/list"], (req, res, next) => {
 	const value = {
