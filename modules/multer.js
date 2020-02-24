@@ -11,29 +11,30 @@ const makePath = () => {
 	return folder;
 }
 
-const makeFile = (file) => {
-	file
+// file = p1.jpg
+const makeFile = (fileName) => {
+	let ext = path.extname(fileName); //.jpg
+	let base = path.basename(fileName, ext); //p1
+	let saveName = moment(new Date()).format('YYMMDD') + '-' + Date.now() + '-' + Math.floor(Math.random() * 900 + 100) + ext; // 200224-1534356765-234.jpg
+	return saveName;
 }
 
 
 const storage = multer.diskStorage({
 	destination: (req, file, cb) => {
+		console.log(makePath());
 		cb(null, makePath());
 	},
 	filename: (req, file, cb) => {
-		cb(null, makeFile(file))
+		console.log(makeFile(file.originalname));
+		cb(null, makeFile(file.originalname))
 	}
 });
-
-
 
 const chkExt = () => {
 
 }
 
-
-
-
 const upload = multer({ storage: storage })
 
-module.exports = { upload, makePath };
+module.exports = { upload };
