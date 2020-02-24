@@ -21,8 +21,10 @@ router.get("/write", (req, res, next) => {
 
 router.post("/save", upload.single('upfile'), async(req, res, next) => {
 	let {title, writer, content, wdate = new Date(), realfile = '', savefile = ''} = req.body;
-	if(req.file.originalname) realfile = req.file.originalname;
-	if(req.file.filename) savefile = req.file.filename;
+	if(req.file) {
+		realfile = req.file.originalname;
+		savefile = req.file.filename;
+	}
 	let sql = "INSERT INTO gallery SET title=?, writer=?, content=?, wdate=?, realfile=?, savefile=?";
 	const value = [title, writer, content, wdate, realfile, savefile];
 	const result = await connect.execute(sql, value);
