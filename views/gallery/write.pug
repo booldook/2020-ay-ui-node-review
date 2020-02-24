@@ -7,7 +7,7 @@ block content
 				span 갤러리 게시판
 					small  - 글작성
 		div.border.rounded.p-3
-			form(name="sendForm" action="/gallery/save" method="post")
+			form(name="sendForm" action="/gallery/save" method="post" enctype="multipart/form-data")
 				table.w-100
 					tbody
 						tr.border-bottom
@@ -21,7 +21,7 @@ block content
 						tr.border-bottom
 							td.p-3(style="width: 20%; background-color: #f1f1f1") 첨부이미지
 							td.p-2
-								input.form-control-file(name="file" type="file")
+								input.form-control-file(name="upfile" type="file")
 						tr.border-bottom
 							td.p-3(style="width: 20%; background-color: #f1f1f1") 본문
 							td.p-2

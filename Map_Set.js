@@ -1,6 +1,8 @@
 /* 번외편 - ES6 Set(), Map(),  */
 // 배열 ["A", "B", "C"]: key(index), value
 // 객체 {fname: "홍", lname: "길동", age: 25}
+const log = console.log;
+
 let arr2 = new Array();
 arr2.push("A");
 arr2.push("B");
@@ -62,3 +64,8 @@ for(let [key, value] of myMap) {
 
 log(myMap.keys());
 log(myMap.values());
+
+const arr3 = ["A", "B", "C"];
+for(let v of arr3) {
+	console.log(v);
+}

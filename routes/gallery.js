@@ -3,8 +3,10 @@ const path = require('path');
 const express = require('express');
 const router = express.Router();
 const { connect } = require(path.join(__dirname, '../modules/mysql'));
+const { upload, makePath } = require(path.join(__dirname, '../modules/multer'));
 
 router.get(["/", "/list"], (req, res, next) => {
+	makePath();
 	const value = {
 
 	};
@@ -13,12 +15,12 @@ router.get(["/", "/list"], (req, res, next) => {
 
 router.get("/write", (req, res, next) => {
 	const value = {
-	
+		file: 'gallery'
 	};
 	res.render("gallery/write.pug", value);
 });
 
-router.post("/save", async(req, res, next) => {
+router.post("/save", upload.single('upfile'), async(req, res, next) => {
 	let { title, writer, content, wdate = new Date() } = req.body;
 	let sql = "INSERT INTO gallery SET title=?, writer=?, content=?, wdate=?";
 	const value = [title, writer, content, wdate];

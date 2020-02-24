@@ -8,8 +8,9 @@ app.listen(3000, () => {
 
 /* 뷰엔진 세팅 */
 app.locals.pretty = true;
+app.locals.mainLogo = "MAIN LOGO";
 app.set("view engine", "pug");
-app.set("views", "./views");
+app.set("views", path.join(__dirname, "./views"));
 
 /* 모듈 불러오기 */
 const { connect } = require(path.join(__dirname, './modules/mysql'));
@@ -24,6 +25,7 @@ app.use(express.urlencoded({extended: false}));
 
 /* 라우터 세팅 */
 app.use("/", express.static(path.join(__dirname, "./public")));
+app.use("/uploads", express.static(path.join(__dirname, "./uploads")));
 app.use("/gallery", galleryRouter);
 
 /* 에러 세팅 */
