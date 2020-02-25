@@ -1,0 +1,5 @@
+/* fluid 5 columns */
+.grid-sizer,
+.grid-item { width: 18%; margin: 1%; border-radius: 10px; overflow: hidden;}
+/* 2 columns */
+.grid-item--width2 { width: 40%; }

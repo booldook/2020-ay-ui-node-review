@@ -6,9 +6,10 @@ block content
 				i.fa.fa-image.mr-2.text-light
 				span 갤러리 게시판
 					small  - 리스트
-		ul.wrapper.d-flex.justify-content-between.flex-wrap
+		ul.grid
+			li.grid-sizer
 			- for(var v of lists) {
-				li.list(style="flex: 20% 0 0; padding: 1%;")
+				li.grid-item
 					div.border
 						img.img(src=`${v.savefile}`)
 			- }
