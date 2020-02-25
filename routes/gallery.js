@@ -6,7 +6,7 @@ const { connect } = require(path.join(__dirname, '../modules/mysql'));
 const { upload } = require(path.join(__dirname, '../modules/multer'));
 
 router.get(["/", "/list"], async (req, res, next) => {
-	const sql = "SELECT * FROM gallery ORDER BY id DESC";
+	const sql = "SELECT * FROM gallery ORDER BY id DESC LIMIT 0, 8";
 	const result = await connect.execute(sql);
 	for(let v of result[0]) {
 		if(v.savefile) {

@@ -1,16 +1,19 @@
 /* fluid 5 columns */
 .grid-sizer,
-.grid-item { width: 23%; margin: 1%; border-radius: 10px; overflow: hidden;}
+.grid-item { width: 25%; padding: 1%;}
+.grid-item > div { border-radius: 10px; overflow: hidden; box-shadow: 0 0 10px rgba(0,0,0,0.3); position: relative;}
+
+.grid-item .item-id {width: 30px; height: 30px; text-align: center; line-height: 30px; color: #fff; background-color: #222; position: absolute; top: 10px; left: 10px; border-radius: 50%;}
 
 @media screen and (max-width: 992px) {
 	.grid-sizer,
-	.grid-item { width: 31.3333%;}
+	.grid-item { width: 33.3333%;}
 }
 @media screen and (max-width: 768px) {
 	.grid-sizer,
-	.grid-item { width: 48%;}
+	.grid-item { width: 50%;}
 }
 @media screen and (max-width: 480px) {
 	.grid-sizer,
-	.grid-item { width: 98%;}
+	.grid-item { width: 100%;}
 }
