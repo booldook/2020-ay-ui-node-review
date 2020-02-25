@@ -1,5 +1,16 @@
 /* fluid 5 columns */
 .grid-sizer,
-.grid-item { width: 18%; margin: 1%; border-radius: 10px; overflow: hidden;}
-/* 2 columns */
-.grid-item--width2 { width: 40%; }
+.grid-item { width: 23%; margin: 1%; border-radius: 10px; overflow: hidden;}
+
+@media screen and (max-width: 992px) {
+	.grid-sizer,
+	.grid-item { width: 31.3333%;}
+}
+@media screen and (max-width: 768px) {
+	.grid-sizer,
+	.grid-item { width: 48%;}
+}
+@media screen and (max-width: 480px) {
+	.grid-sizer,
+	.grid-item { width: 98%;}
+}
