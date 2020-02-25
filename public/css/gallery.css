@@ -5,6 +5,19 @@
 
 .grid-item .item-id {width: 30px; height: 30px; text-align: center; line-height: 30px; color: #fff; background-color: #222; position: absolute; top: 10px; left: 10px; border-radius: 50%;}
 
+.pager-wrap {margin: 50px auto; display: flex; justify-content: center; color: #222;}
+.pager-wrap > a {flex: 30px 0 0; height: 30px; text-align: center; line-height: 30px; border: 1px solid #aaa; margin-right: -1px; text-decoration: none;}
+.pager-wrap > a:link,
+.pager-wrap > a:hover,
+.pager-wrap > a:visited,
+.pager-wrap > a:active {color: inherit;}
+.bt-first {border-radius: 6px 0 0 6px;}
+.bt-last {border-radius: 0 6px 6px 0;}
+.bt-first, .bt-last {border: none !important; background-color: #757575; color: #fff !important;}
+.bt-prev, .bt-next {border: none !important; background-color:#b8b8b8 ; color: #fff !important;}
+.pager-wrap > a.disable {background-color: #dadada; cursor: not-allowed;}
+.pager-wrap > a.active {background-color: royalblue; color: #fff !important;}
+
 @media screen and (max-width: 992px) {
 	.grid-sizer,
 	.grid-item { width: 33.3333%;}
