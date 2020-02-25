@@ -5,10 +5,22 @@ const router = express.Router();
 const { connect } = require(path.join(__dirname, '../modules/mysql'));
 const { upload } = require(path.join(__dirname, '../modules/multer'));
 
-router.get(["/", "/list"], (req, res, next) => {
+router.get(["/", "/list"], async (req, res, next) => {
+	const sql = "SELECT * FROM gallery ORDER BY id DESC";
+	const result = await connect.execute(sql);
+	for(let v of result[0]) {
+		if(v.savefile) {
+			v.savefile = '/uploads/' + v.savefile.substr(0, 6) + '/' + v.savefile;
+		}
+		else {
+			v.savefile = 'https://via.placeholder.com/300?text=no-image';
+		}
+	}
 	const value = {
-
+		file: 'gallery',
+		lists: result[0]
 	};
+	//res.json(result[0]);
 	res.render("gallery/list.pug", value);
 });
 
@@ -28,7 +40,7 @@ router.post("/save", upload.single('upfile'), async(req, res, next) => {
 	let sql = "INSERT INTO gallery SET title=?, writer=?, content=?, wdate=?, realfile=?, savefile=?";
 	const value = [title, writer, content, wdate, realfile, savefile];
 	const result = await connect.execute(sql, value);
-	res.json(result);
+	res.redirect("/gallery");
 
 	/* connect.execute(sql, value, (err, result) => {
 		res.json(result);
