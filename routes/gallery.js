@@ -4,10 +4,17 @@ const express = require('express');
 const router = express.Router();
 const { connect } = require(path.join(__dirname, '../modules/mysql'));
 const { upload } = require(path.join(__dirname, '../modules/multer'));
+const { pager } = require(path.join(__dirname, '../modules/pager')); 
 
-router.get(["/", "/list"], async (req, res, next) => {
-	const sql = "SELECT * FROM gallery ORDER BY id DESC LIMIT 0, 8";
-	const result = await connect.execute(sql);
+router.get(["/", "/list", "/list/:page"], async (req, res, next) => {
+	let page = req.params.page;
+	if(!page) page = 1;
+	let sql = "SELECT count(id) FROM gallery";
+	let result = await connect.execute(sql);
+	let pagerVals = pager(page, result[0][0]['count(id)']);
+	res.json(pagerVals);
+	sql = "SELECT * FROM gallery ORDER BY id DESC LIMIT 0, 8";
+	result = await connect.execute(sql);
 	for(let v of result[0]) {
 		if(v.savefile) {
 			v.savefile = '/uploads/' + v.savefile.substr(0, 6) + '/' + v.savefile;
@@ -21,7 +28,7 @@ router.get(["/", "/list"], async (req, res, next) => {
 		lists: result[0]
 	};
 	//res.json(result[0]);
-	res.render("gallery/list.pug", value);
+	//res.render("gallery/list.pug", value);
 });
 
 router.get("/write", (req, res, next) => {
