@@ -7,14 +7,14 @@ const { upload } = require(path.join(__dirname, '../modules/multer'));
 const { pager } = require(path.join(__dirname, '../modules/pager')); 
 
 router.get(["/", "/list", "/list/:page"], async (req, res, next) => {
-	let page = req.params.page;
+	let page = Number(req.params.page);
 	if(!page) page = 1;
 	let sql = "SELECT count(id) FROM gallery";
 	let result = await connect.execute(sql);
 	let pagerVals = pager({ page, total: result[0][0]['count(id)'] });
-	res.json(pagerVals);
-	sql = "SELECT * FROM gallery ORDER BY id DESC LIMIT 0, 8";
-	result = await connect.execute(sql);
+	sql = "SELECT * FROM gallery ORDER BY id DESC LIMIT ?, ?";
+	let values = [pagerVals.stRec, pagerVals.list];
+	result = await connect.execute(sql, values);
 	for(let v of result[0]) {
 		if(v.savefile) {
 			v.savefile = '/uploads/' + v.savefile.substr(0, 6) + '/' + v.savefile;
@@ -25,10 +25,11 @@ router.get(["/", "/list", "/list/:page"], async (req, res, next) => {
 	}
 	const value = {
 		file: 'gallery',
-		lists: result[0]
+		lists: result[0],
+		pager: pagerVals
 	};
 	//res.json(result[0]);
-	//res.render("gallery/list.pug", value);
+	res.render("gallery/list.pug", value);
 });
 
 router.get("/write", (req, res, next) => {
