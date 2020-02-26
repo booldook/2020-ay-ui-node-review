@@ -1,6 +1,12 @@
 .pager-wrap
-	a.bt-first.fa.fa-angle-double-left.disable(href="#")
-	a.bt-prev.fa.fa-angle-left.disable(href="#")
+	if pager.first > 0
+		a.bt-first.fa.fa-angle-double-left(href=`/${file}/list/${pager.first}`)
+	else
+		a.bt-first.fa.fa-angle-double-left.disable
+	if pager.prev > 0
+		a.bt-prev.fa.fa-angle-left(href=`/${file}/list/${pager.prev}`)
+	else
+		a.bt-prev.fa.fa-angle-left.disable
 	a.active(href="") 1
 	a(href="") 2
 	a(href="") 3
