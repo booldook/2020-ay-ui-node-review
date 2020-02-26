@@ -11,7 +11,7 @@ router.get(["/", "/list", "/list/:page"], async (req, res, next) => {
 	if(!page) page = 1;
 	let sql = "SELECT count(id) FROM gallery";
 	let result = await connect.execute(sql);
-	let pagerVals = pager(page, result[0][0]['count(id)']);
+	let pagerVals = pager({ page, total: result[0][0]['count(id)'] });
 	res.json(pagerVals);
 	sql = "SELECT * FROM gallery ORDER BY id DESC LIMIT 0, 8";
 	result = await connect.execute(sql);

@@ -1,15 +1,19 @@
 // page: 요청한 페이지
 // total: 전체 게시물 수
 // cnt: 세트의 갯수(1,2,3)(4,5,6)(7) -> 3
-const pager = (page, total, cnt = 3) => {
-	let grp = 0;				// 페이저에 나타날 페이지 수(1,2,3)->3, (1,2,3,4,5)->5
-	let std = 0; 				// 세트의 시작번호
-	let end = 0; 				// 세트의 마지막번호
-	let prev = 0;				// prev버튼 클릭시 갈 페이지
-	let next = 0;				// next버튼 클릭시 갈 페이지
-	let first = 0;			// first버튼 클릭시 갈 페이지
-	let last = 0;				// last버튼 클릭시 갈 페이지
-	const obj = { page, total, cnt, };
+const pager = (obj) => {
+	if(!obj.cnt) obj.cnt = 3;		// 세트의 갯수(1,2,3)(4,5,6)(7) -> 3
+	if(!obj.list) obj.list = 8;	// 한페이지에 나타날 목록의 갯수
+	if(!obj.grp) obj.grp = 3;		// 페이저에 나타날 페이지 수(1,2,3)->3
+	obj.std = 0; 								// 세트의 시작번호
+	obj.end = 0; 								// 세트의 마지막번호
+	obj.prev = 0;								// prev버튼 클릭시 갈 페이지
+	obj.next = 0;								// next버튼 클릭시 갈 페이지
+	obj.first = 0;							// first버튼 클릭시 갈 페이지
+	obj.last = 0;								// last버튼 클릭시 갈 페이지
+	obj.totalPage = Math.ceil(obj.total/obj.list);			// 전체 페이지 갯수
+	obj.grpIndex = Math.floor((obj.page - 1)/obj.grp);	// 페이저 그룹의 Index
+
 	return obj;
 }
 
