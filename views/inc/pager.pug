@@ -7,8 +7,17 @@
 		a.bt-prev.fa.fa-angle-left(href=`/${file}/list/${pager.prev}`)
 	else
 		a.bt-prev.fa.fa-angle-left.disable
-	a.active(href="") 1
-	a(href="") 2
-	a(href="") 3
-	a.bt-next.fa.fa-angle-right(href="#")
-	a.bt-last.fa.fa-angle-double-right(href="#")
+	- for(var i=pager.std; i<=pager.end; i++) {
+		if pager.page == i 
+			a.active(href=`/${file}/list/${i}`)= i
+		else
+			a(href=`/${file}/list/${i}`)= i
+	- }
+	if pager.next > 0
+		a.bt-next.fa.fa-angle-right(href=`/${file}/list/${pager.next}`)
+	else
+		a.bt-next.fa.fa-angle-right.disable
+	if pager.last > 0
+		a.bt-last.fa.fa-angle-double-right(href=`/${file}/list/${pager.last}`)
+	else
+		a.bt-last.fa.fa-angle-double-right.disable

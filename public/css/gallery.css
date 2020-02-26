@@ -13,8 +13,7 @@
 .pager-wrap > a:active {color: inherit;}
 .bt-first {border-radius: 6px 0 0 6px;}
 .bt-last {border-radius: 0 6px 6px 0;}
-.bt-first, .bt-last {border: none !important; background-color: #757575; color: #fff !important;}
-.bt-prev, .bt-next {border: none !important; background-color:#b8b8b8 ; color: #fff !important;}
+.bt-first, .bt-last, .bt-prev, .bt-next {border: none !important; background-color: #bbbdbe; color: #fff !important;}
 .pager-wrap > a.disable {background-color: #dadada; cursor: not-allowed;}
 .pager-wrap > a.active {background-color: royalblue; color: #fff !important;}
 
