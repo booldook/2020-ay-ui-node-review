@@ -7,15 +7,23 @@ block content
 				span 갤러리 게시판
 					small  - 상세보기
 		.my-3.p-3
-			table.table.table-bordered
+			table.view-tb.table.table-bordered
 				tbody
 					tr
-						td 번호
-						td= v.id
-						td 작성자
-						td= v.writer
-						td 작성일
-						td= v.wdate
+						td.view-td-tit 번호
+						td= rs.id
+						td.view-td-tit 작성자
+						td= rs.writer
+						td.view-td-tit 작성일
+						td= rs.wdate
 					tr
-						td 제목
-						td(colspan="5")= v.title
+						td.view-td-tit 제목
+						td(colspan="5")= rs.title
+					tr
+						td(colspan="6")
+							p= rs.content
+							img.my-3(src=`${rs.img}`)
+					tr
+						td.view-td-tit 첨부파일
+						td(colspan="5")
+							a(href=`/gallery/download/${rs.savefile}`)= rs.realfile

@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const express = require('express');
+const moment = require('moment');
 const router = express.Router();
 const { connect } = require(path.join(__dirname, '../modules/mysql'));
 const { upload } = require(path.join(__dirname, '../modules/multer'));
@@ -47,7 +48,7 @@ router.post("/save", upload.single('upfile'), async(req, res, next) => {
 	}
 	let sql = "INSERT INTO gallery SET title=?, writer=?, content=?, wdate=?, realfile=?, savefile=?";
 	const value = [title, writer, content, wdate, realfile, savefile];
-	const result = await connect.execute(sql, value);
+	let result = await connect.execute(sql, value);
 	res.redirect("/gallery");
 
 	/* connect.execute(sql, value, (err, result) => {
@@ -63,9 +64,24 @@ router.post("/save", upload.single('upfile'), async(req, res, next) => {
 router.get("/delete/:id", async (req, res, next) => {
 	const id = req.params.id;
 	const sql = "DELETE FROM gallery WHERE id="+id;
-	const result = await connect.execute(sql);
+	let result = await connect.execute(sql);
 	res.redirect("/gallery");
 });
 
+router.get("/view/:id", async (req, res, next) => {
+	const id = req.params.id;
+	const sql = "SELECT * FROM gallery WHERE id="+id;
+	let result = await connect.execute(sql);
+	let rs = result[0][0];
+	console.log(rs);
+	rs.wdate = moment(rs.wdate).format("YYYY-MM-DD HH:mm:ss");
+	rs.img = `/uploads/${rs.savefile.substr(0, 6)}/${rs.savefile}`;
+	const value = {
+		file: 'gallery',
+		rs
+	};
+	//res.json(rs);
+	res.render('gallery/view.pug', value);
+});
 
 module.exports = router;
