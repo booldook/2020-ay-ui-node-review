@@ -84,4 +84,10 @@ router.get("/view/:id", async (req, res, next) => {
 	res.render('gallery/view.pug', value);
 });
 
+router.get("/download/:file", (req, res, next) => {
+	const file = req.params.file;
+	const filename = path.join(__dirname, `../uploads/${file.substr(0, 6)}/${file}`);
+	res.download(filename);
+})
+
 module.exports = router;

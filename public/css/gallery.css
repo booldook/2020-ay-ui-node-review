@@ -24,6 +24,9 @@
 .pager-wrap > a.disable {background-color: #dadada; cursor: not-allowed;}
 .pager-wrap > a.active {background-color: royalblue; color: #fff !important;}
 
+
+.view-td-tit {background-color: #f1f1f1;}
+
 @media screen and (max-width: 992px) {
 	.grid-sizer,
 	.grid-item { width: 33.3333%;}
