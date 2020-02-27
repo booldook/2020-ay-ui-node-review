@@ -60,4 +60,12 @@ router.post("/save", upload.single('upfile'), async(req, res, next) => {
 	}); */
 });
 
+router.get("/delete/:id", async (req, res, next) => {
+	const id = req.params.id;
+	const sql = "DELETE FROM gallery WHERE id="+id;
+	const result = await connect.execute(sql);
+	res.redirect("/gallery");
+});
+
+
 module.exports = router;

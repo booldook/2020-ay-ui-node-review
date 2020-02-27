@@ -1,0 +1,21 @@
+extends ../layout/default.pug
+block content
+	.container
+		.alert.alert-secondary
+			h4 
+				i.fa.fa-image.mr-2.text-light
+				span 갤러리 게시판
+					small  - 상세보기
+		.my-3.p-3
+			table.table.table-bordered
+				tbody
+					tr
+						td 번호
+						td= v.id
+						td 작성자
+						td= v.writer
+						td 작성일
+						td= v.wdate
+					tr
+						td 제목
+						td(colspan="5")= v.title

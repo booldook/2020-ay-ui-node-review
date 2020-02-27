@@ -2,7 +2,7 @@
 // total: 전체 게시물 수
 // cnt: 세트의 갯수(1,2,3)(4,5,6)(7) -> 3
 const pager = (obj) => {
-	if(!obj.list) obj.list = 5;	// 한페이지에 나타날 목록의 갯수
+	if(!obj.list) obj.list = 8;	// 한페이지에 나타날 목록의 갯수
 	if(!obj.grp) obj.grp = 3;		// 페이저에 나타날 페이지 수(1,2,3)->3
 	obj.std = 0; 								// 세트의 시작번호
 	obj.end = 0; 								// 세트의 마지막번호
