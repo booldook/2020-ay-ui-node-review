@@ -17,6 +17,6 @@ block content
 							.icon-wrap
 								a.far.fa-file(href=`/gallery/view/${v.id}`)
 								a.fa.fa-pencil-alt(href=`/gallery/update/${v.id}`)
-								a.fa.fa-trash-alt(href=`/gallery/delete/${v.id}`)
+								a.fa.fa-trash-alt(onclick=`onDelete(${v.id})`)
 			- }
 		include ../inc/pager.pug
