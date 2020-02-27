@@ -10,6 +10,7 @@ const { pager } = require(path.join(__dirname, '../modules/pager'));
 router.get(["/", "/list", "/list/:page"], async (req, res, next) => {
 	let page = Number(req.params.page);
 	if(!page) page = 1;
+	req.app.locals.page = page;
 	let sql = "SELECT count(id) FROM gallery";
 	let result = await connect.execute(sql);
 	let pagerVals = pager({ page, total: result[0][0]['count(id)'] });

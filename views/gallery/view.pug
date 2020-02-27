@@ -27,3 +27,5 @@ block content
 						td.view-td-tit 첨부파일
 						td(colspan="5")
 							a(href=`/gallery/download/${rs.savefile}`)= rs.realfile
+			.text-center.my-3
+				button.btn.btn-primary(onclick=`location.href="/gallery/list/${page}"`) 목록
