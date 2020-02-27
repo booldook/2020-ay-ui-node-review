@@ -34,10 +34,22 @@ router.get(["/", "/list", "/list/:page"], async (req, res, next) => {
 	res.render("gallery/list.pug", value);
 });
 
-router.get("/write", (req, res, next) => {
+router.get(["/write", "/update/:id"], async (req, res, next) => {
+	let sTitle = '글작성';
+	let rs = {id: '', title: '', writer: '', savefile: '', content: ''};
+	if(req.path !== "/write") {
+		sTitle = '글수정';
+		let id = req.params.id;
+		let sql = "SELECT * FROM gallery WHERE id="+id;
+		let result = await connect.execute(sql);
+		rs = result[0][0];
+	}
 	const value = {
-		file: 'gallery'
+		file: 'gallery',
+		sTitle,
+		rs
 	};
+	//res.json(rs);
 	res.render("gallery/write.pug", value);
 });
 

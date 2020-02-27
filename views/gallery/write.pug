@@ -5,27 +5,31 @@ block content
 			h4 
 				i.fa.fa-image.mr-2.text-light
 				span 갤러리 게시판
-					small  - 글작성
+					small  - 
+						span= sTitle
 		div.border.rounded.p-3
 			form(name="sendForm" action="/gallery/save" method="post" enctype="multipart/form-data")
+				input(type="hidden" name="id" value=`${rs.id}`)
 				table.w-100
 					tbody
 						tr.border-bottom
 							td.p-3(style="width: 20%; background-color: #f1f1f1") 제목
 							td.p-2
-								input.form-control(name="title" type="text" placeholder="제목을 입력하세요")
+								input.form-control(name="title" type="text" placeholder="제목을 입력하세요" value=`${rs.title}`)
 						tr.border-bottom
 							td.p-3(style="width: 20%; background-color: #f1f1f1") 작성자
 							td.p-2
-								input.form-control(name="writer" type="text" placeholder="작성자를 등록하세요.")
+								input.form-control(name="writer" type="text" placeholder="작성자를 등록하세요." value=`${rs.writer}`)
 						tr.border-bottom
 							td.p-3(style="width: 20%; background-color: #f1f1f1") 첨부이미지
 							td.p-2
 								input.form-control-file(name="upfile" type="file")
+								if rs.savefile
+									p.p-2= rs.savefile
 						tr.border-bottom
 							td.p-3(style="width: 20%; background-color: #f1f1f1") 본문
 							td.p-2
-								textarea.form-control(name="content")
+								textarea.form-control(name="content")= rs.content
 				.text-center.mt-3
 					button.btn.btn-primary(type="submit") 저장
 					button.btn.btn-danger(type="reset") 다시작성
