@@ -54,13 +54,27 @@ router.get(["/write", "/update/:id"], async (req, res, next) => {
 });
 
 router.post("/save", upload.single('upfile'), async(req, res, next) => {
-	let {title, writer, content, wdate = new Date(), realfile = '', savefile = ''} = req.body;
+	let {id = '', title, writer, content, wdate = new Date(), realfile = '', savefile = ''} = req.body;
+	let sql = '';
+	let value = [];
 	if(req.file) {
 		realfile = req.file.originalname;
 		savefile = req.file.filename;
 	}
-	let sql = "INSERT INTO gallery SET title=?, writer=?, content=?, wdate=?, realfile=?, savefile=?";
-	const value = [title, writer, content, wdate, realfile, savefile];
+	if(id === '') {
+		sql = "INSERT INTO gallery SET title=?, writer=?, content=?, wdate=?, realfile=?, savefile=?";
+		value = [title, writer, content, wdate, realfile, savefile];
+	}
+	else {
+		if(req.file) {
+			sql = "UPDATE gallery SET title=?, writer=?, content=?, realfile=?, savefile=? WHERE id=?";
+			value = [title, writer, content, realfile, savefile, id];
+		}
+		else {
+			sql = "UPDATE gallery SET title=?, writer=?, content=? WHERE id=?";
+			value = [title, writer, content, id];
+		}
+	}
 	let result = await connect.execute(sql, value);
 	res.redirect("/gallery");
 
